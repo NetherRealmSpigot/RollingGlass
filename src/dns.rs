@@ -19,7 +19,7 @@ fn get_resolver() -> &'static Resolver<TokioConnectionProvider> {
 async fn resolve_ipv4(host: &str) -> Vec<Ipv4Addr> {
     let mut ips = Vec::new();
     let res = Resolver::ipv4_lookup(get_resolver(), host).await;
-    if !res.is_ok() {
+    if res.is_err() {
         return ips
     }
     let res = res.unwrap();
@@ -32,12 +32,12 @@ async fn resolve_ipv4(host: &str) -> Vec<Ipv4Addr> {
 async fn resolve_srv(host: &str) -> Vec<(Ipv4Addr, u16)> {
     let mut ips = Vec::new();
     let res = Resolver::srv_lookup(get_resolver(), format!("_minecraft._tcp.{host}")).await;
-    if !res.is_ok() {
+    if res.is_err() {
         return ips;
     }
     let res = res.unwrap();
     for srv_rec in res.iter() {
-        let res4 = resolve_ipv4(&*srv_rec.target().to_string()).await;
+        let res4 = resolve_ipv4(srv_rec.target().to_string().as_str()).await;
         if !res4.is_empty() {
             res4.iter().for_each(|v| {
                 ips.push((*v, srv_rec.port()));
