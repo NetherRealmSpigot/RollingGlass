@@ -258,7 +258,7 @@ dependencies = [
 [[package]]
 name = "flashlight"
 version = "0.0.1"
-source = "git+https://github.com/NetherRealmSpigot/Flashlight.git#37efe33365d739ad36bb249764ca5dde843f2022"
+source = "git+https://github.com/NetherRealmSpigot/Flashlight.git#a59686930f842ae42579120d307f3068d69b10af"
 
 [[package]]
 name = "form_urlencoded"

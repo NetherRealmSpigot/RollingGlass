@@ -31,6 +31,8 @@ jobs:
         ]
     name: Build and test on ${{ matrix.runner_label }}
     runs-on: ${{ matrix.runner_label }}
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,9 +48,7 @@ jobs:
         run: cargo install cargo-tarpaulin
 
       - name: Run test
-        run: |
-          cargo tarpaulin --force-clean --release --frozen --run-types AllTargets --out lcov
-          cargo build --release --verbose --frozen
+        run: make
 
       - name: Write job summary
         uses: livewing/lcov-job-summary@v1.2.0
