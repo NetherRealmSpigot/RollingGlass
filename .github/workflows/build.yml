@@ -1,0 +1,69 @@
+name: Build and test
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "src/*.rs"
+      - "tests/*.rs"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "!.gitignore"
+      - "!LICENSE"
+      - "!README.md"
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        runner_label: [
+          ubuntu-24.04, ubuntu-22.04,
+          ubuntu-24.04-arm, ubuntu-22.04-arm,
+          windows-2025, windows-2022,
+          macos-15, macos-14, macos-13
+        ]
+    name: Build and test on ${{ matrix.runner_label }}
+    runs-on: ${{ matrix.runner_label }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+          cache: false
+          override: true
+
+      - name: Install cargos
+        run: cargo install cargo-tarpaulin
+
+      - name: Run test
+        run: |
+          cargo tarpaulin --force-clean --release --frozen --run-types AllTargets --out lcov
+          cargo build --release --verbose --frozen
+
+      - name: Write job summary
+        uses: livewing/lcov-job-summary@v1.2.0
+        with:
+          lcov: ./lcov.info
+        continue-on-error: true
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-and-test-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.runner_label }}
+          path: |
+            ./target/debug
+            ./target/release
+            ./lcov.info
+          retention-days: 1
+          overwrite: true
+        continue-on-error: true

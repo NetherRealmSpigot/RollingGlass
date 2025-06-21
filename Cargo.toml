@@ -1,0 +1,13 @@
+[package]
+name = "rolling_glass"
+version = "0.0.1"
+edition = "2021"
+publish = false
+license-file = "LICENSE"
+
+[dependencies]
+im = "15.1.0"
+flashlight = { git = "https://github.com/NetherRealmSpigot/Flashlight.git" }
+hickory-resolver = "0.25.2"
+tokio = "1.45.1"
+clap = { version = "4.5.40", features = ["derive"] }
