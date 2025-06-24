@@ -99,7 +99,7 @@ mod tests {
         let r = r.unwrap();
         assert!(!r.is_empty());
         r.iter().for_each(|v| {
-            assert_eq!((*v).1, DEFAULT_PORT);
+            assert_eq!(v.1, DEFAULT_PORT);
         });
 
         let r = resolve("critz.gg", &25564u16).await;
@@ -107,7 +107,7 @@ mod tests {
         let r = r.unwrap();
         assert!(!r.is_empty());
         r.iter().for_each(|v| {
-            assert_eq!((*v).1, 25564u16);
+            assert_eq!(v.1, 25564u16);
         });
 
         let r = resolve("critz.gg", &DEFAULT_PORT).await;
@@ -115,7 +115,7 @@ mod tests {
         let r = r.unwrap();
         assert!(!r.is_empty());
         r.iter().for_each(|v| {
-            assert_eq!((*v).1, DEFAULT_PORT);
+            assert_eq!(v.1, DEFAULT_PORT);
         });
 
         let r = resolve("mc.hypixel.net", &DEFAULT_PORT).await;
@@ -124,7 +124,7 @@ mod tests {
         assert!(!r.is_empty());
         assert!(r.len() > 1);
         r.iter().for_each(|v| {
-            assert_eq!((*v).1, DEFAULT_PORT);
+            assert_eq!(v.1, DEFAULT_PORT);
         });
     }
 }
