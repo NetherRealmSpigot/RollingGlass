@@ -38,7 +38,7 @@ pub fn compose_status_request_packet() -> Vec<u8> {
 
 #[cfg(test)]
 mod tests {
-    use crate::protocol::{MINECRAFT_1_21_6, MINECRAFT_1_8};
+    use crate::protocol::{MINECRAFT_1_21_7, MINECRAFT_1_8};
 
     use super::*;
 
@@ -73,9 +73,9 @@ mod tests {
         packet_raw_content_add_varint_length(&mut t);
         assert_eq!(t, compose_handshake_packet(&"localhost".to_string(), &65534, &MINECRAFT_1_8));
 
-        let mut t: Vec<u8> = vec![0x00, 131, 6, 14, 0x6D, 0x63, 0x2E, 0x68, 0x79, 0x70, 0x69, 0x78, 0x65, 0x6C, 0x2E, 0x6E, 0x65, 0x74, 0x63, 0xDD, 0x01];
+        let mut t: Vec<u8> = vec![0x00, 132, 6, 14, 0x6D, 0x63, 0x2E, 0x68, 0x79, 0x70, 0x69, 0x78, 0x65, 0x6C, 0x2E, 0x6E, 0x65, 0x74, 0x63, 0xDD, 0x01];
         packet_raw_content_add_varint_length(&mut t);
-        assert_eq!(t, compose_handshake_packet(&"mc.hypixel.net".to_string(), &25565, &MINECRAFT_1_21_6));
+        assert_eq!(t, compose_handshake_packet(&"mc.hypixel.net".to_string(), &25565, &MINECRAFT_1_21_7));
     }
 
     #[test]

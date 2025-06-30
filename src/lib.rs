@@ -54,6 +54,7 @@ pub use protocol::MINECRAFT_1_21_3;
 pub use protocol::MINECRAFT_1_21_4;
 pub use protocol::MINECRAFT_1_21_5;
 pub use protocol::MINECRAFT_1_21_6;
+pub use protocol::MINECRAFT_1_21_7;
 pub use protocol::MINECRAFT_1_7;
 pub use protocol::MINECRAFT_1_7_1;
 pub use protocol::MINECRAFT_1_7_10;

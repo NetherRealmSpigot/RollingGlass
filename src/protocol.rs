@@ -107,6 +107,7 @@ pub const MINECRAFT_1_21_3: ProtocolNum = 768;
 pub const MINECRAFT_1_21_4: ProtocolNum = 769;
 pub const MINECRAFT_1_21_5: ProtocolNum = 770;
 pub const MINECRAFT_1_21_6: ProtocolNum = 771;
+pub const MINECRAFT_1_21_7: ProtocolNum = 772;
 
 pub fn get_known_protocol_numbers() -> &'static HashSet<ProtocolNum> {
     static KNOWN_PROTOCOL_NUMBERS: OnceLock<HashSet<ProtocolNum>> = OnceLock::new();
@@ -159,6 +160,7 @@ pub fn get_known_protocol_numbers() -> &'static HashSet<ProtocolNum> {
         set.insert(MINECRAFT_1_21_4);
         set.insert(MINECRAFT_1_21_5);
         set.insert(MINECRAFT_1_21_6);
+        set.insert(MINECRAFT_1_21_7);
         set
     })
 }
@@ -356,6 +358,7 @@ mod tests {
         assert!(is_known_protocol_number(&MINECRAFT_1_21_4));
         assert!(is_known_protocol_number(&MINECRAFT_1_21_5));
         assert!(is_known_protocol_number(&MINECRAFT_1_21_6));
-        assert!(!is_known_protocol_number(&(MINECRAFT_1_21_6 + 1)));
+        assert!(is_known_protocol_number(&MINECRAFT_1_21_7));
+        assert!(!is_known_protocol_number(&(MINECRAFT_1_21_7 + 1)));
     }
 }
