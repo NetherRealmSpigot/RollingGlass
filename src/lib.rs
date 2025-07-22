@@ -2,7 +2,6 @@ pub use dns::resolve;
 pub use packet::compose_handshake_packet;
 pub use packet::compose_status_request_packet;
 pub use protocol::DEFAULT_PORT;
-pub use protocol::get_known_protocol_numbers;
 pub use protocol::is_known_protocol_number;
 pub use protocol::LATEST;
 pub use protocol::MINECRAFT_1_10;

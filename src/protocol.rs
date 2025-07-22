@@ -111,64 +111,57 @@ pub const MINECRAFT_1_21_7: ProtocolNum = 772;
 pub const MINECRAFT_1_21_8: ProtocolNum = 772;
 pub const LATEST: ProtocolNum = MINECRAFT_1_21_8;
 
-pub fn get_known_protocol_numbers() -> &'static HashSet<ProtocolNum> {
-    static KNOWN_PROTOCOL_NUMBERS: OnceLock<HashSet<ProtocolNum>> = OnceLock::new();
-    KNOWN_PROTOCOL_NUMBERS.get_or_init(|| {
-        let mut set = HashSet::new();
-        set.insert(MINECRAFT_1_7_1);
-        set.insert(MINECRAFT_1_7_5);
-        set.insert(MINECRAFT_1_7_10);
-        set.insert(MINECRAFT_1_8_9);
-        set.insert(MINECRAFT_1_9);
-        set.insert(MINECRAFT_1_9_1);
-        set.insert(MINECRAFT_1_9_2);
-        set.insert(MINECRAFT_1_9_4);
-        set.insert(MINECRAFT_1_10_2);
-        set.insert(MINECRAFT_1_11);
-        set.insert(MINECRAFT_1_11_2);
-        set.insert(MINECRAFT_1_12);
-        set.insert(MINECRAFT_1_12_1);
-        set.insert(MINECRAFT_1_12_2);
-        set.insert(MINECRAFT_1_13);
-        set.insert(MINECRAFT_1_13_1);
-        set.insert(MINECRAFT_1_13_2);
-        set.insert(MINECRAFT_1_14);
-        set.insert(MINECRAFT_1_14_1);
-        set.insert(MINECRAFT_1_14_2);
-        set.insert(MINECRAFT_1_14_3);
-        set.insert(MINECRAFT_1_14_4);
-        set.insert(MINECRAFT_1_15);
-        set.insert(MINECRAFT_1_15_1);
-        set.insert(MINECRAFT_1_15_2);
-        set.insert(MINECRAFT_1_16);
-        set.insert(MINECRAFT_1_16_1);
-        set.insert(MINECRAFT_1_16_2);
-        set.insert(MINECRAFT_1_16_3);
-        set.insert(MINECRAFT_1_16_5);
-        set.insert(MINECRAFT_1_17);
-        set.insert(MINECRAFT_1_17_1);
-        set.insert(MINECRAFT_1_18_1);
-        set.insert(MINECRAFT_1_18_2);
-        set.insert(MINECRAFT_1_19);
-        set.insert(MINECRAFT_1_19_2);
-        set.insert(MINECRAFT_1_19_3);
-        set.insert(MINECRAFT_1_19_4);
-        set.insert(MINECRAFT_1_20_1);
-        set.insert(MINECRAFT_1_20_2);
-        set.insert(MINECRAFT_1_20_4);
-        set.insert(MINECRAFT_1_20_6);
-        set.insert(MINECRAFT_1_21_1);
-        set.insert(MINECRAFT_1_21_3);
-        set.insert(MINECRAFT_1_21_4);
-        set.insert(MINECRAFT_1_21_5);
-        set.insert(MINECRAFT_1_21_6);
-        set.insert(MINECRAFT_1_21_8);
-        set
-    })
-}
-
 pub fn is_known_protocol_number(n: &ProtocolNum) -> bool {
-    get_known_protocol_numbers().contains(n)
+    matches!(
+        *n, MINECRAFT_1_7_1
+            | MINECRAFT_1_7_5
+            | MINECRAFT_1_7_10
+            | MINECRAFT_1_8_9
+            | MINECRAFT_1_9
+            | MINECRAFT_1_9_1
+            | MINECRAFT_1_9_2
+            | MINECRAFT_1_9_4
+            | MINECRAFT_1_10_2
+            | MINECRAFT_1_11
+            | MINECRAFT_1_11_2
+            | MINECRAFT_1_12
+            | MINECRAFT_1_12_1
+            | MINECRAFT_1_12_2
+            | MINECRAFT_1_13
+            | MINECRAFT_1_13_1
+            | MINECRAFT_1_13_2
+            | MINECRAFT_1_14
+            | MINECRAFT_1_14_1
+            | MINECRAFT_1_14_2
+            | MINECRAFT_1_14_3
+            | MINECRAFT_1_14_4
+            | MINECRAFT_1_15
+            | MINECRAFT_1_15_1
+            | MINECRAFT_1_15_2
+            | MINECRAFT_1_16
+            | MINECRAFT_1_16_1
+            | MINECRAFT_1_16_2
+            | MINECRAFT_1_16_3
+            | MINECRAFT_1_16_5
+            | MINECRAFT_1_17
+            | MINECRAFT_1_17_1
+            | MINECRAFT_1_18_1
+            | MINECRAFT_1_18_2
+            | MINECRAFT_1_19
+            | MINECRAFT_1_19_2
+            | MINECRAFT_1_19_3
+            | MINECRAFT_1_19_4
+            | MINECRAFT_1_20_1
+            | MINECRAFT_1_20_2
+            | MINECRAFT_1_20_4
+            | MINECRAFT_1_20_6
+            | MINECRAFT_1_21_1
+            | MINECRAFT_1_21_3
+            | MINECRAFT_1_21_4
+            | MINECRAFT_1_21_5
+            | MINECRAFT_1_21_6
+            | MINECRAFT_1_21_8
+    )
 }
 
 pub async fn ping(host: &String, port: &u16, fakehost: &String, protocol: &ProtocolNum, timeout: &u8) -> Result<Vec<u8>, String> {
