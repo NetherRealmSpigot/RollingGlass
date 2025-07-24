@@ -2,11 +2,11 @@ all: lint test build
 
 .PHONY: build
 build:
-	cargo build --release --verbose
+	cargo build --release
 
 .PHONY: test
 test:
-	cargo tarpaulin --force-clean --release --verbose --run-types AllTargets --out lcov --out stdout
+	cargo tarpaulin --force-clean --release --run-types AllTargets --out lcov --out stdout
 
 .PHONY: lint
 lint:

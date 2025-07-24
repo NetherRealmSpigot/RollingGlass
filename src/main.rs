@@ -28,6 +28,6 @@ struct RollingGlassArguments {
 #[tokio::main]
 async fn main() {
     let args: RollingGlassArguments = RollingGlassArguments::parse();
-    let res = ping(&args.host, &args.port, &args.fakehost.unwrap_or_default(), &args.protocol, &args.timeout).await.expect("Failed to ping");
+    let res = ping(&args.host, args.port, &args.fakehost.unwrap_or_default(), args.protocol, args.timeout).await.expect("Failed to ping");
     let _ = stdout().write_all(&res);
 }

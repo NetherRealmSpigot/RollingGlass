@@ -7,7 +7,7 @@ license-file = "LICENSE"
 
 [dependencies]
 im = "15.1.0"
-flashlight = { git = "https://github.com/NetherRealmSpigot/Flashlight.git" }
+flashlight = { git = "https://github.com/NetherRealmSpigot/Flashlight.git", rev = "887cea486df213eebf5c4c6c5cd64b065e48f9ba" }
 hickory-resolver = "0.25.2"
 tokio = "1.45.1"
 clap = { version = "4.5.40", features = ["derive"] }

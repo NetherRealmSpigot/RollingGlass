@@ -49,9 +49,8 @@ async fn resolve_srv(host: &str) -> Vec<(Ipv4Addr, u16)> {
 
 pub async fn resolve(host: &str, port: &u16) -> Result<Vec<(Ipv4Addr, u16)>, String> {
     let res = IpAddr::from_str(host);
-    if res.is_ok() {
-        let res = res.unwrap();
-        return match res {
+    if let Ok(res_ip) = res {
+        return match res_ip {
             IpAddr::V4(res4) => { Ok(vec![(res4, *port)]) },
             IpAddr::V6(_) => { Err("IPv6 not supported".to_string()) }
         }
